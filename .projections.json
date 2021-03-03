@@ -1,0 +1,25 @@
+{
+    "app/*.hs": {
+        "type": "app",
+        "console": "stack ghci api:exe:api"
+    },
+    "src/*.hs": {
+        "alternate": "test/{dirname}/{basename}Spec.hs",
+        "type": "src",
+        "console": "stack ghci api:lib"
+    },
+    "test/*Spec.hs": {
+        "alternate": "src/{dirname}/{basename}.hs",
+        "type": "test"
+    },
+    "benchmark/*.hs": {
+        "type": "benchmark"
+    },
+    "*.hs": {
+        "console": "stack ghci {}"
+    },
+    "*": {
+        "dispatch": "stack run",
+        "make": "stack build"
+    }
+}

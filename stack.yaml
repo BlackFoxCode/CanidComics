@@ -1,0 +1,10 @@
+resolver: lts-15.5
+extra-deps:
+- base-noprelude-4.13.0.0@sha256:3cccbfda38e1422ca5cc436d58858ba51ff9114d2ed87915a6569be11e4e5a90,6842
+- HDBC-2.4.0.3@sha256:99d3de808f53271afb0a8c31adfc99c7ef94f28355aba58bb0c9dffd4376296f,2998
+- HDBC-postgresql-2.4.0.0@sha256:6937915890091bac9da554eb73d939e56ebe080dac2ff006b05a6827687fb1b4,3050
+- rivet-0.1.0.0@sha256:bf04c14be7bcc58b29a2a10c22e411eca512be55278e8ccdd38e3ab2fbd9a393,646
+- rivet-core-0.2.0.0@sha256:eaffea0ef7911ed38308146d76d23b4544fd140d31ccafe6c072ead8daa8fead,1110
+- rivet-simple-deploy-0.1.0.0@sha256:ef34f03fae7163bac72ec133e777198e7b50eaca4a6bf940a903bc13502cf4da,774
+- rivet-autoimporter-0.1.0.0@sha256:f9fb4ff0a613c3decdc3729364a73e9ee69735db318f65bfec5d3038b014e5f9,768
+- rivet-adaptor-postgresql-0.1.0.0@sha256:1d99b30d46c4ed6869b5c9f19e78a93dda6af74d0a198975b45aea4eb7884c60,1167

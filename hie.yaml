@@ -1,0 +1,8 @@
+cradle:
+    stack:
+    - path: "./src"
+      component: "api:lib"
+    - path: "./app"
+      component: "api:exe:api"
+    - path: "./migrations"
+      component: "api:exe:migrate"
