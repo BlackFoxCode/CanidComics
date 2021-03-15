@@ -9,9 +9,12 @@ Canid Comics API
 {-# LANGUAGE TypeOperators #-}
 
 module Api
-    ( API
-    , api
-    , apiHandler
+    ( -- * Full API type
+      API
+    , -- * Servant Proxy
+      api
+    , -- * Full server handler
+      apiHandler
     ) where
 
 import Servant

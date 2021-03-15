@@ -1,5 +1,3 @@
-{-# LANGUAGE DerivingStrategies #-}
-
 {- |
 Module: Api.Database
 Description: Database Setup and Connection Management
@@ -16,23 +14,28 @@ Database Common
 
 {-# LANGUAGE DeriveAnyClass     #-}
 {-# LANGUAGE DeriveGeneric      #-}
+{-# LANGUAGE DerivingStrategies #-}
 {-# LANGUAGE FlexibleInstances  #-}
 {-# LANGUAGE ImpredicativeTypes #-}
 {-# LANGUAGE TypeFamilies       #-}
 
 module Api.Database
-  ( CanidComicsDb (..)
+  ( -- * Database definitions
+    CanidComicsDb (..)
   , canidComicsDb
-  , comics
+  , -- ** Database table lenses
+    comics
   , users
+  , -- * Connection functions
+    withBeam
   , withDBConnection
-  , withBeam
   )
 where
 
 import           Configuration.Dotenv       (defaultConfig, loadFile)
-import           Database.Beam              (Database, DatabaseSettings, TableEntity, TableLens (TableLens),
-                                             dbLenses, defaultDbSettings)
+import           Control.Exception
+import           Database.Beam              (Database, DatabaseSettings, TableEntity, TableLens (TableLens), dbLenses,
+                                             defaultDbSettings)
 import           Database.Beam.Postgres     (Pg, runBeamPostgres, runBeamPostgresDebug)
 import           Database.PostgreSQL.Simple (ConnectInfo (..), Connection, close, connectPostgreSQL,
                                              postgreSQLConnectionString)
@@ -41,7 +44,7 @@ import           System.Environment         (lookupEnv)
 
 import           Api.Database.Tables
 
--- / Database Definition
+-- | Database Definition
 data CanidComicsDb f
   = CanidComicsDb
       { _comics :: f (TableEntity ComicT)
@@ -57,13 +60,11 @@ CanidComicsDb (TableLens comics)
               (TableLens users)
                = dbLenses
 
+-- | Simple bracket wrapper to ensure database connections are closed
 withDBConnection :: (Connection -> IO a) -> IO a
-withDBConnection f = do
-  conn <- getDBConnection
-  res <- f conn
-  closeDBConnection conn
-  return res
+withDBConnection = bracket openPostgres close
 
+-- | Wrapper for runBeamPostgres that enables debug printing to STDOUT if API_DEBUG set in env
 withBeam :: Pg a -> IO a
 withBeam f = do
   isDebug <- lookupEnv ("API_DEBUG" :: String)
@@ -73,8 +74,8 @@ withBeam f = do
   withDBConnection $ \c -> run c f
 
 -- | Connect to PostgreSQL using environment variables for configuration
-getDBConnection :: IO Connection
-getDBConnection = do
+openPostgres :: IO Connection
+openPostgres = do
   e <- doesFileExist ".env"
   when e $ void (loadFile defaultConfig)
 
@@ -82,7 +83,7 @@ getDBConnection = do
   port     <- lookupEnv ("API_DB_PORT" :: String)
   username <- lookupEnv ("API_DB_USER" :: String)
   password <- lookupEnv ("API_DB_PASS" :: String)
-  database <- lookupEnv ("API_DB_DB" :: String)
+  database <- lookupEnv ("API_DB_DB"   :: String)
 
   let port' = case (readEither (fromMaybe "5432" port) :: Either Text Word16) of
         Right p -> p
@@ -96,6 +97,3 @@ getDBConnection = do
           (fromMaybe "" password)
           (fromMaybe "canidcomics" database)
   connectPostgreSQL $ postgreSQLConnectionString connectionInfo
-
-closeDBConnection :: Connection -> IO ()
-closeDBConnection = close
