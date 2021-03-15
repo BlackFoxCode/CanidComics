@@ -1,63 +1,81 @@
 {- |
+Module: Api.Comics
+Description: Routes and handlers for '/comics'
 Copyright: (c) 2021 Reyu Zenfold
 SPDX-License-Identifier: MIT
 Maintainer: Reyu Zenfold <reyu@reyuzenfold.com>
+Stability: experimental
 
 Comics API
 -}
-{-# LANGUAGE DataKinds #-}
-{-# LANGUAGE DeriveGeneric #-}
-{-# LANGUAGE DerivingStrategies #-}
-{-# LANGUAGE TypeOperators #-}
+{-# LANGUAGE DataKinds         #-}
+{-# LANGUAGE FlexibleInstances #-}
 {-# LANGUAGE OverloadedStrings #-}
+{-# LANGUAGE TypeFamilies      #-}
+{-# LANGUAGE TypeOperators     #-}
 
 module Api.Comics
     ( ComicAPI
-    , Comic(..)
     , comicAPI
+    , listComics
+    , newComic
+    , deleteComic
     ) where
 
-import Servant
-import Data.Aeson
-import Database.HDBC
+import           Control.Lens
+import           Database.Beam
+import           Database.Beam.Backend.SQL.BeamExtensions
+import           Servant
 
-import Api.Database
+import           Api.Database
+import           Api.Database.Tables.Comics
 
 type ComicAPI = Get '[JSON] [Comic]
-           :<|> ReqBody '[JSON] Comic :> Post '[JSON] Comic
-
-data Comic = Comic
-    { name        :: String
-    , description :: Maybe String
-    , url         :: String
-    } deriving stock (Eq, Show, Generic)
-instance ToJSON Comic
-instance FromJSON Comic
+           :<|> ReqBody '[JSON] NewComic :> Post '[JSON] Comic
+           :<|> Capture "comicID" Int32 :> DeleteNoContent '[JSON] NoContent
 
 comicAPI :: Server ComicAPI
-comicAPI = listComics :<|> newComic
+comicAPI = listComics :<|> newComic :<|> deleteComic
 
 listComics :: Handler [Comic]
-listComics = do
-    liftIO $ putStrLn "List"
-    conn <- liftIO connectPSql
-    results <- liftIO $ quickQuery' conn
-               "SELECT * FROM comics"
-               []
-    let rows = map convRow results
-    return rows
-  where convRow :: [SqlValue] -> Comic
-        convRow [_, sqlName, sqlDesc, sqlUrl] =
-            Comic (fromSql sqlName) (fromSql sqlDesc) (fromSql sqlUrl)
-        convRow _ = error "Unexpected SQL output"
+listComics = liftIO $ withBeam $ runSelectReturningList $ select (all_ (canidComicsDb ^. comics))
 
-newComic :: Comic -> Handler Comic
-newComic comicJSON = do
-    liftIO $ putStrLn "Create"
-    conn <- liftIO connectPSql
-    lastID <- liftIO .  withTransaction conn $ \dbh -> do
-        ins <- liftIO $ prepare dbh "INSERT INTO comics (name, description, url) VALUES (?, ?, ?)"
-        execute ins (fromComic comicJSON)
-    liftIO . putStrLn $ "Created new Comic with ID: " ++ show lastID
-    return comicJSON
-  where fromComic (Comic n d u) = [toSql n, toSql d, toSql u]
+
+newComic :: NewComic -- ^ object to be inserted into database
+         -> Handler Comic
+newComic (NewComic n d a u) = liftIO $ do
+    [result] <- withBeam $ runInsertReturningList $ insert (canidComicsDb ^. comics) $
+                insertExpressions [Comic default_ (val_ n) (val_ d) (val_ a) (val_ u)]
+    return result
+
+
+deleteComic :: Int32 -> Handler NoContent
+deleteComic cid = do
+    hasRow <- liftIO . withBeam $ do
+        row <- runSelectReturningOne $ select $ do
+            comic <- all_ (canidComicsDb ^. comics)
+            guard_ (comic ^. comicId ==. val_ cid)
+            pure comic
+        case row of
+          Nothing -> return False
+          Just _  -> do
+              runDelete $ delete (canidComicsDb ^. comics) (\c -> c ^. comicId ==. val_ cid)
+              return True
+    if hasRow
+       then return NoContent
+       else throwError err404 { errBody = "Comic does not exist" }
+
+-- updateComic :: Int32 -> UpdateComic -> Handler Comic
+-- updateComic cid comic@(UpdateComic n d a u) = do
+--     result <- liftIO . withBeam $ do
+--         row <- runSelectReturningOne $ select $ do
+--             comic <- all_ (canidComicsDb ^. comics)
+--             guard_ (comic ^. comicId ==. val_ cid)
+--             pure comic
+--         case row of
+--           Nothing -> return Nothing
+--           Just c  -> do
+--               runUpdate $ save (canidComicsDb ^. comics) (c 
+
+-- replaceComic :: NewComic -> Handler Comic
+-- replaceComic comic@(NewComic n d a u) = return comic
