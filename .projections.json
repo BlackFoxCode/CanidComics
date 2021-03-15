@@ -6,20 +6,40 @@
     "src/*.hs": {
         "alternate": "test/{dirname}/{basename}Spec.hs",
         "type": "src",
-        "console": "stack ghci api:lib"
+        "console": "stack ghci api:lib",
+        "template": [
+            "{- |",
+            "Module: {dot}",
+            "Description: Route and handlers for '/{basename|snakecase}'",
+            "Copyright: (c) 2021 Reyu Zenfold",
+            "SPDX-License-Identifier: MIT",
+            "Maintainer: Reyu Zenfold <reyu@reyuzenfold.com>",
+            "Stability: experimental",
+            "-}",
+            "",
+            "module {dot}",
+            "   (",
+            "   ) where",
+            ""
+        ]
+    },
+    "src/Api/Database/*.hs": {
+        "type": "db"
     },
     "test/*Spec.hs": {
         "alternate": "src/{dirname}/{basename}.hs",
-        "type": "test"
+        "type": "test",
+        "console": "stack ghci api:test:api-test"
     },
     "benchmark/*.hs": {
-        "type": "benchmark"
+        "type": "benchmark",
+        "console": "stack ghci api:bench:api-benchmark"
     },
     "*.hs": {
         "console": "stack ghci {}"
     },
     "*": {
-        "dispatch": "stack run",
-        "make": "stack build"
+        "start": "stack run",
+        "dispatch": "stack build"
     }
 }
