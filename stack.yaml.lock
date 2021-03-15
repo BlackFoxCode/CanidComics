@@ -5,54 +5,106 @@
 
 packages:
 - completed:
-    hackage: base-noprelude-4.13.0.0@sha256:3cccbfda38e1422ca5cc436d58858ba51ff9114d2ed87915a6569be11e4e5a90,6842
+    size: 1210257
+    subdir: beam-core
+    url: https://github.com/haskell-beam/beam/archive/efd464b079755a781c2bb7a2fc030d6c141bbb8a.tar.gz
+    name: beam-core
+    version: 0.9.0.0
+    sha256: fed5faf9dc37ee6e8e5c687787c05667356c78fe21d3ffeb213e7179301ac87f
     pantry-tree:
-      size: 112
-      sha256: 90db92c8401880187ce642c5345407bcbd9546ea235524dd445cab2566ee3db1
+      size: 2704
+      sha256: e54dabae556fcac9079587adcce1b2bb107c196688c476dabdd84ca86ad556af
   original:
-    hackage: base-noprelude-4.13.0.0@sha256:3cccbfda38e1422ca5cc436d58858ba51ff9114d2ed87915a6569be11e4e5a90,6842
+    subdir: beam-core
+    url: https://github.com/haskell-beam/beam/archive/efd464b079755a781c2bb7a2fc030d6c141bbb8a.tar.gz
 - completed:
-    hackage: HDBC-2.4.0.3@sha256:99d3de808f53271afb0a8c31adfc99c7ef94f28355aba58bb0c9dffd4376296f,2998
+    size: 1210257
+    subdir: beam-postgres
+    url: https://github.com/haskell-beam/beam/archive/efd464b079755a781c2bb7a2fc030d6c141bbb8a.tar.gz
+    name: beam-postgres
+    version: 0.5.0.0
+    sha256: fed5faf9dc37ee6e8e5c687787c05667356c78fe21d3ffeb213e7179301ac87f
     pantry-tree:
-      size: 1004
-      sha256: 4a151afa92d9d77a85b5d05583b93744bbec353b995a07daf4a4739211ced292
+      size: 2596
+      sha256: c670e97dee9841d1cd79ac8809a13c906aac62e21771a4456e8c2fcbe98da39f
   original:
-    hackage: HDBC-2.4.0.3@sha256:99d3de808f53271afb0a8c31adfc99c7ef94f28355aba58bb0c9dffd4376296f,2998
+    subdir: beam-postgres
+    url: https://github.com/haskell-beam/beam/archive/efd464b079755a781c2bb7a2fc030d6c141bbb8a.tar.gz
 - completed:
-    hackage: HDBC-postgresql-2.4.0.0@sha256:6937915890091bac9da554eb73d939e56ebe080dac2ff006b05a6827687fb1b4,3050
+    size: 1210257
+    subdir: beam-migrate
+    url: https://github.com/haskell-beam/beam/archive/efd464b079755a781c2bb7a2fc030d6c141bbb8a.tar.gz
+    name: beam-migrate
+    version: 0.5.0.0
+    sha256: fed5faf9dc37ee6e8e5c687787c05667356c78fe21d3ffeb213e7179301ac87f
     pantry-tree:
-      size: 1611
-      sha256: 7548a8f6e70faa3649717dac6b62ded00101a5c9854305ec161cec657e06061f
+      size: 1826
+      sha256: 84b8d1410857b38e7ab2470daf63e67aa6b2d166c257a56e0b894b6297a7da99
   original:
-    hackage: HDBC-postgresql-2.4.0.0@sha256:6937915890091bac9da554eb73d939e56ebe080dac2ff006b05a6827687fb1b4,3050
+    subdir: beam-migrate
+    url: https://github.com/haskell-beam/beam/archive/efd464b079755a781c2bb7a2fc030d6c141bbb8a.tar.gz
 - completed:
-    hackage: rivet-0.1.0.0@sha256:bf04c14be7bcc58b29a2a10c22e411eca512be55278e8ccdd38e3ab2fbd9a393,646
+    size: 1210257
+    subdir: beam-migrate-cli
+    url: https://github.com/haskell-beam/beam/archive/efd464b079755a781c2bb7a2fc030d6c141bbb8a.tar.gz
+    name: beam-migrate-cli
+    version: 0.2.0.0
+    sha256: fed5faf9dc37ee6e8e5c687787c05667356c78fe21d3ffeb213e7179301ac87f
     pantry-tree:
-      size: 199
-      sha256: 8ef630b95841439283bff755ef95b0816155090d8105a6dc8b3208a7ab31e903
+      size: 1102
+      sha256: 39772479752ef16185153fa0f96a1df7db5e4349be6f8a249fe570ce49fa38cb
   original:
-    hackage: rivet-0.1.0.0@sha256:bf04c14be7bcc58b29a2a10c22e411eca512be55278e8ccdd38e3ab2fbd9a393,646
+    subdir: beam-migrate-cli
+    url: https://github.com/haskell-beam/beam/archive/efd464b079755a781c2bb7a2fc030d6c141bbb8a.tar.gz
 - completed:
-    hackage: rivet-core-0.2.0.0@sha256:eaffea0ef7911ed38308146d76d23b4544fd140d31ccafe6c072ead8daa8fead,1110
+    hackage: dependent-map-0.4.0.0@sha256:ca2b131046f4340a1c35d138c5a003fe4a5be96b14efc26291ed35fd08c62221,1657
     pantry-tree:
-      size: 399
-      sha256: 882ffb898af6b3a87eb231197157b346f96f6c4eea9ba25635914eb8c05b0209
+      size: 551
+      sha256: 5defa30010904d2ad05a036f3eaf83793506717c93cbeb599f40db1a3632cfc5
   original:
-    hackage: rivet-core-0.2.0.0@sha256:eaffea0ef7911ed38308146d76d23b4544fd140d31ccafe6c072ead8daa8fead,1110
+    hackage: dependent-map-0.4.0.0@sha256:ca2b131046f4340a1c35d138c5a003fe4a5be96b14efc26291ed35fd08c62221,1657
 - completed:
-    hackage: rivet-simple-deploy-0.1.0.0@sha256:ef34f03fae7163bac72ec133e777198e7b50eaca4a6bf940a903bc13502cf4da,774
+    hackage: dependent-sum-0.7.1.0@sha256:5599aa89637db434431b1dd3fa7c34bc3d565ee44f0519bfbc877be1927c2531,2068
     pantry-tree:
-      size: 232
-      sha256: 22d8094a5a49c18c70f2589ccc44d958e5d001472d843f7debdd8e6d782279b7
+      size: 290
+      sha256: 9cbfb32b5a8a782b7a1c941803fd517633cb699159b851c1d82267a9e9391b50
   original:
-    hackage: rivet-simple-deploy-0.1.0.0@sha256:ef34f03fae7163bac72ec133e777198e7b50eaca4a6bf940a903bc13502cf4da,774
+    hackage: dependent-sum-0.7.1.0@sha256:5599aa89637db434431b1dd3fa7c34bc3d565ee44f0519bfbc877be1927c2531,2068
 - completed:
-    hackage: rivet-autoimporter-0.1.0.0@sha256:f9fb4ff0a613c3decdc3729364a73e9ee69735db318f65bfec5d3038b014e5f9,768
+    hackage: constraints-extras-0.3.0.2@sha256:013b8d0392582c6ca068e226718a4fe8be8e22321cc0634f6115505bf377ad26,1853
     pantry-tree:
-      size: 213
-      sha256: 75cd727ae232c6ec85421ae278acf6b77d7697fb6edb567868d78f377a8028ce
+      size: 594
+      sha256: 3ce1012bfb02e4d7def9df19ce80b8cd2b472c691b25b181d9960638673fecd1
   original:
-    hackage: rivet-autoimporter-0.1.0.0@sha256:f9fb4ff0a613c3decdc3729364a73e9ee69735db318f65bfec5d3038b014e5f9,768
+    hackage: constraints-extras-0.3.0.2@sha256:013b8d0392582c6ca068e226718a4fe8be8e22321cc0634f6115505bf377ad26,1853
+- completed:
+    hackage: some-1.0.1@sha256:26e5bab7276f48b25ea8660d3fd1166c0f20fd497dac879a40f408e23211f93e,2055
+    pantry-tree:
+      size: 708
+      sha256: c882b6ebe8a0616f1ab3908f1620087ad5c6d8d82d1a72b99226f6487419bfe6
+  original:
+    hackage: some-1.0.1@sha256:26e5bab7276f48b25ea8660d3fd1166c0f20fd497dac879a40f408e23211f93e,2055
+- completed:
+    hackage: ansi-terminal-0.9.1@sha256:48f53532d0f365ffa568c8cf0adc84c66f800a7d80d3329e4f04fa75392f4af1,3225
+    pantry-tree:
+      size: 1461
+      sha256: 4686b1fdd2b74598eb83d35f447e4520d58d6534b5277a6f2bfaaa258bf1f833
+  original:
+    hackage: ansi-terminal-0.9.1@sha256:48f53532d0f365ffa568c8cf0adc84c66f800a7d80d3329e4f04fa75392f4af1,3225
+- completed:
+    hackage: cryptonite-0.25@sha256:6942644686c4e316c9f312b51151caba779e35f15fb666d255c802b1a84067ae,16776
+    pantry-tree:
+      size: 21649
+      sha256: e23059e2dfa0bd66e43159cd5dbf9c5af1ed5fa338a4714a9b1e1dce1efc8e6e
+  original:
+    hackage: cryptonite-0.25@sha256:6942644686c4e316c9f312b51151caba779e35f15fb666d255c802b1a84067ae,16776
+- completed:
+    hackage: network-2.8.0.1@sha256:0f165dffa752d8cde30c2bde86f80609c4f1dc5eeb3182d593041f97839c5b3b,3011
+    pantry-tree:
+      size: 2488
+      sha256: 2dbdda2225969dcd452d983a2ac7e52341e5fc1df76103342c9fac08fc686931
+  original:
+    hackage: network-2.8.0.1@sha256:0f165dffa752d8cde30c2bde86f80609c4f1dc5eeb3182d593041f97839c5b3b,3011
 - completed:
     hackage: rivet-adaptor-postgresql-0.1.0.0@sha256:1d99b30d46c4ed6869b5c9f19e78a93dda6af74d0a198975b45aea4eb7884c60,1167
     pantry-tree:
@@ -60,9 +112,16 @@ packages:
       sha256: b4d6d3998d4ad73a3276fb40e74bbd7ed6bf97f91f2166d10190a56efc9288fc
   original:
     hackage: rivet-adaptor-postgresql-0.1.0.0@sha256:1d99b30d46c4ed6869b5c9f19e78a93dda6af74d0a198975b45aea4eb7884c60,1167
+- completed:
+    hackage: rivet-core-0.2.0.0@sha256:eaffea0ef7911ed38308146d76d23b4544fd140d31ccafe6c072ead8daa8fead,1110
+    pantry-tree:
+      size: 399
+      sha256: 882ffb898af6b3a87eb231197157b346f96f6c4eea9ba25635914eb8c05b0209
+  original:
+    hackage: rivet-core-0.2.0.0@sha256:eaffea0ef7911ed38308146d76d23b4544fd140d31ccafe6c072ead8daa8fead,1110
 snapshots:
 - completed:
-    size: 491372
-    url: https://raw.githubusercontent.com/commercialhaskell/stackage-snapshots/master/lts/15/5.yaml
-    sha256: 1b549cfff328040c382a70a84a2087aac8dab6d778bf92f32a93a771a1980dfc
-  original: lts-15.5
+    size: 532381
+    url: https://raw.githubusercontent.com/commercialhaskell/stackage-snapshots/master/lts/16/11.yaml
+    sha256: 1f43c4ad661a114a4f9dd4580988f30da1208d844c097714f5867c52a02e0aa1
+  original: lts-16.11

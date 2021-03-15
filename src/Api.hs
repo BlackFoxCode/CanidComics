@@ -9,8 +9,12 @@ Canid Comics API
 {-# LANGUAGE TypeOperators #-}
 
 module Api
-    ( app
-    , api
+    ( -- * Full API type
+      API
+    , -- * Servant Proxy
+      api
+    , -- * Full server handler
+      apiHandler
     ) where
 
 import Servant
@@ -22,8 +26,5 @@ type API = "comics" :> ComicAPI
 api :: Proxy API
 api = Proxy
 
-server :: Server API
-server = comicAPI
-
-app :: Application
-app = serve api server
+apiHandler :: Server API
+apiHandler = comicAPI

@@ -1,8 +1,15 @@
 cradle:
     stack:
-    - path: "./src"
-      component: "api:lib"
-    - path: "./app"
-      component: "api:exe:api"
-    - path: "./migrations"
-      component: "api:exe:migrate"
+        - path: "./src"
+          component: "api:lib"
+        - path: "./app"
+          component: "api:exe:api"
+        - path: "./migrations"
+          component: "api:exe:migrate"
+        - path: "./test"
+          component: "api:test:api-test"
+        - path: "./benchmark"
+          component: "api:bench:api-benchmark"
+dependencies:
+    - api.cabal
+    - stack.yaml
